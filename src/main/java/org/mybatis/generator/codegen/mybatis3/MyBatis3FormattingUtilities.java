@@ -61,8 +61,14 @@ public class MyBatis3FormattingUtilities {
 
         sb.append("#{"); //$NON-NLS-1$
         sb.append(introspectedColumn.getJavaProperty(prefix));
-        sb.append(",jdbcType="); //$NON-NLS-1$
-        sb.append(introspectedColumn.getJdbcTypeName());
+        //qingqing 自定义javaType
+        if (introspectedColumn.isJavaType()) {
+            sb.append(",javaType="); //qingqing
+            sb.append(introspectedColumn.getFullyQualifiedJavaType().getShortName());
+        } else {
+            sb.append(",jdbcType="); //$NON-NLS-1$
+            sb.append(introspectedColumn.getJdbcTypeName());
+        }
 
         if (stringHasValue(introspectedColumn.getTypeHandler())) {
             sb.append(",typeHandler="); //$NON-NLS-1$
