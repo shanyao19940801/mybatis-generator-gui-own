@@ -21,6 +21,7 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zzg.mybatis.generator.plugins.xmlmapper.elements.QQXMLMapperGenerator;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -43,7 +44,6 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampl
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByPrimaryKeySelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByPrimaryKeyWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByPrimaryKeyWithoutBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.XMLMapperGenerator;
 import org.mybatis.generator.config.PropertyRegistry;
 
 /**
@@ -230,6 +230,8 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
 
     @Override
     public AbstractXmlGenerator getMatchedXMLGenerator() {
-        return new XMLMapperGenerator();
+//        return new XMLMapperGenerator();
+        //qingqing 使用自定义的XMLMApper Generator
+        return new QQXMLMapperGenerator();
     }
 }

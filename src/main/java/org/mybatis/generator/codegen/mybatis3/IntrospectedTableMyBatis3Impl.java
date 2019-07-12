@@ -67,6 +67,7 @@ public class IntrospectedTableMyBatis3Impl extends IntrospectedTable {
         calculateXmlMapperGenerator(javaClientGenerator, warnings, progressCallback);
     }
 
+    //获取xmlmapper 的generator
     protected void calculateXmlMapperGenerator(AbstractJavaClientGenerator javaClientGenerator, 
             List<String> warnings,
             ProgressCallback progressCallback) {
