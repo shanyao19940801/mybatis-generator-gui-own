@@ -129,6 +129,7 @@
                                        </HBox.margin>
                                             </TextField>
                                  </children>
+                                  <Label text="填写后生成Insert返回id" GridPane.rowIndex="2" />
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -175,9 +176,10 @@
                                       <TextField fx:id="daoTargetProject" prefHeight="27.0" prefWidth="155.0" promptText="src/main/java" text="src/main/java" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
-                                 </GridPane.margin></TextField>
-                                      <Label prefHeight="27.0" prefWidth="99.0" text="映射XML文件包名" GridPane.rowIndex="7" />
-                                        <TextField fx:id="mapperTargetPackage" prefHeight="27.0" prefWidth="248.0" promptText="com.example" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 </GridPane.margin>
+                                      </TextField>
+                                      <Label prefHeight="27.0" prefWidth="99.0" text="映射XML文件包名" GridPane.rowIndex="6" />
+                                        <TextField fx:id="mapperTargetPackage" prefHeight="27.0" prefWidth="248.0" promptText="com.example" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                             <HBox.margin>
                                                 <Insets right="5.0" />
                                             </HBox.margin>
@@ -185,12 +187,12 @@
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                                         </TextField>
-                                      <Label text="存放目录" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                      <TextField fx:id="mappingTargetProject" prefHeight="27.0" prefWidth="155.0" promptText="src/main/java" text="src/main/java" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                                      <Label text="存放目录" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                      <TextField fx:id="mappingTargetProject" prefHeight="27.0" prefWidth="155.0" promptText="src/main/java" text="src/main/java" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin></TextField>
-                              <VBox prefHeight="53.0" prefWidth="536.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9">
+                              <VBox prefHeight="53.0" prefWidth="536.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="8">
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
@@ -202,20 +204,27 @@
                                                    </FXCollections>
                                                </items>
                                            </ChoiceBox>
-                                       </children>
+                                 </children>
                                     </HBox>
+                                     <HBox prefHeight="100.0" prefWidth="200.0">
+                                         <children>
+                                             <CheckBox fx:id="commentCheckBox" mnemonicParsing="false" selected="true" text="生成实体域注释(来自表注释)" />
+                                             <CheckBox fx:id="overrideXML" mnemonicParsing="false" selected="true" text="覆盖原XML" />
+                                         </children>
+                                     </HBox>
+                                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                                         <children>
+                                             <!--<CheckBox fx:id="forUpdateCheckBox" mnemonicParsing="false" selected="false" text="select 增加ForUpdate" />-->
+                                             <CheckBox fx:id="annotationDAOCheckBox" mnemonicParsing="false" selected="true" text="使用 @Repository 注解" />
+                                         </children>
+                                     </HBox>
                                     <!--<HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8">
                                        <children>
-                                           <CheckBox fx:id="useExample" minWidth="100.0" mnemonicParsing="false" text="使用Example" />
-                                          <CheckBox fx:id="offsetLimitCheckBox" disable="true" minWidth="100.0" mnemonicParsing="false" selected="true" text="分页插件(暂时只支持MySQL和PostgreSQL)" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                           <CheckBox fx:id="useExample" minWidth="100.0" mnemonicParsing="true" text="使用example" />
+                                           <CheckBox fx:id="generateMyKey" minWidth="100.0" mnemonicParsing="true" text="生成主键" />
                                        </children>
                                     </HBox>-->
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <CheckBox fx:id="commentCheckBox" mnemonicParsing="false" selected="true" text="生成实体域注释(来自表注释)" />
-                                          <CheckBox fx:id="overrideXML" mnemonicParsing="false" selected="true" text="覆盖原XML" />
-                                       </children>
-                                    </HBox>
+
                                     <!--<HBox>
                                        <children>
                                           <CheckBox fx:id="needToStringHashcodeEquals" mnemonicParsing="false" selected="true" text="生成toString/hashCode/equals方法">
@@ -225,12 +234,7 @@
                                            <CheckBox fx:id="useSchemaPrefix" mnemonicParsing="false" text="使用Schema前缀" />
                                        </children>
                                     </HBox>-->
-                                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
-                                         <children>
-                                             <CheckBox fx:id="forUpdateCheckBox" mnemonicParsing="false" selected="false" text="select 增加ForUpdate" />
-                                             <CheckBox fx:id="annotationDAOCheckBox" mnemonicParsing="false" selected="true" text="DAO使用 @Repository 注解" />
-                                         </children>
-                                     </HBox>
+
                                      <!--<HBox prefHeight="100.0" prefWidth="200.0">
                                          <children>
                                              <CheckBox fx:id="useDAOExtendStyle" mnemonicParsing="false" selected="true" text="DAO方法抽出到公共父接口">

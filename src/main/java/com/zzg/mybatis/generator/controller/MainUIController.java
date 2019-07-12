@@ -93,6 +93,9 @@ public class MainUIController extends BaseFXController {
     @FXML
     private CheckBox useExample;
     @FXML
+    private CheckBox generateMyKey;
+
+    @FXML
     private CheckBox useDAOExtendStyle;
     @FXML
     private CheckBox useSchemaPrefix;
@@ -230,7 +233,7 @@ public class MainUIController extends BaseFXController {
 //		useTableNameAliasCheckbox.setTooltip(new Tooltip("在Mapper XML文件中表名使用别名，并且列全部使用as查询"));
 		overrideXML.setTooltip(new Tooltip("重新生成时把原XML文件覆盖，否则是追加"));
 //        useDAOExtendStyle.setTooltip(new Tooltip("将通用接口方法放在公共接口中，DAO接口留空"));
-        forUpdateCheckBox.setTooltip(new Tooltip("在Select语句中增加for update后缀"));
+//        forUpdateCheckBox.setTooltip(new Tooltip("在Select语句中增加for update后缀"));
 	}
 
     void loadLeftDBTree() {
@@ -396,7 +399,7 @@ public class MainUIController extends BaseFXController {
         generatorConfig.setOverrideXML(overrideXML.isSelected());
 //        generatorConfig.setNeedToStringHashcodeEquals(needToStringHashcodeEquals.isSelected());
 //        generatorConfig.setUseTableNameAlias(useTableNameAliasCheckbox.isSelected());
-        generatorConfig.setNeedForUpdate(forUpdateCheckBox.isSelected());
+//        generatorConfig.setNeedForUpdate(forUpdateCheckBox.isSelected());
         generatorConfig.setAnnotationDAO(annotationDAOCheckBox.isSelected());
 //        generatorConfig.setAnnotation(annotationCheckBox.isSelected());
 //        generatorConfig.setUseActualColumnNames(useActualColumnNamesCheckbox.isSelected());
