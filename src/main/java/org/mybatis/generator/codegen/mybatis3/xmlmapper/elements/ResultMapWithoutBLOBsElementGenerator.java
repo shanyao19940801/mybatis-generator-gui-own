@@ -109,12 +109,14 @@ public class ResultMapWithoutBLOBsElementGenerator extends
             resultElement.addAttribute(new Attribute(
                     "property", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
             //qingqing 生成mapper.xml的BaseMap时如果自定java类型，则将jdbcType改为javaType
-            if (introspectedColumn.isJavaType()) {
-                resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
-                        introspectedColumn.getJdbcTypeName()));
-            } else {
-                resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
-                        introspectedColumn.getJdbcTypeName()));
+            if (!stringHasValue(introspectedColumn.getTypeHandler())) {
+                if (introspectedColumn.isJavaType()) {
+                    resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
+                            introspectedColumn.getJdbcTypeName()));
+                } else {
+                    resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
+                            introspectedColumn.getJdbcTypeName()));
+                }
             }
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
