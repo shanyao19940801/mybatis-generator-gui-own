@@ -112,7 +112,8 @@ public class ResultMapWithoutBLOBsElementGenerator extends
             if (!stringHasValue(introspectedColumn.getTypeHandler())) {
                 if (introspectedColumn.isJavaType()) {
                     resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
-                            introspectedColumn.getJdbcTypeName()));
+                            introspectedColumn.getFullyQualifiedJavaType().getShortName()));
+
                 } else {
                     resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
                             introspectedColumn.getJdbcTypeName()));
