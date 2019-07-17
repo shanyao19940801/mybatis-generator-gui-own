@@ -215,6 +215,7 @@ public class DbUtil {
 	 */
 	private static void loadDbDriver(DbType dbType){
 		List<String> driverJars = ConfigHelper.getAllJDBCDriverJarPaths();
+		_LOG.info("driver info:" + driverJars.toString());
 		ClassLoader classloader = ClassloaderUtility.getCustomClassloader(driverJars);
 		try {
 			Class clazz = Class.forName(dbType.getDriverClass(), true, classloader);
