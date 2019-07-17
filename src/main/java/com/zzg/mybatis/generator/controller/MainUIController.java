@@ -278,6 +278,7 @@ public class MainUIController extends BaseFXController {
         //5.insertzi东生成主键id
         //8.自动配置mybatis-config
         //9. xml枚举生成使用单选框
+        //10. 删除不用包
         if (tableName == null) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
             return;
