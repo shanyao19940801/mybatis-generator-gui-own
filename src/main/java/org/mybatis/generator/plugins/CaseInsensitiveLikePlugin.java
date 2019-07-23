@@ -26,7 +26,6 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
-import org.mybatis.generator.codegen.ibatis2.Ibatis2FormattingUtilities;
 
 /**
  * This plugin demonstrates adding methods to the example class to enable
@@ -90,8 +89,6 @@ public class CaseInsensitiveLikePlugin extends PluginAdapter {
 
             sb.setLength(0);
             sb.append("addCriterion(\"upper("); //$NON-NLS-1$
-            sb.append(Ibatis2FormattingUtilities
-                    .getAliasedActualColumnName(introspectedColumn));
             sb.append(") like\", value.toUpperCase(), \""); //$NON-NLS-1$
             sb.append(introspectedColumn.getJavaProperty());
             sb.append("\");"); //$NON-NLS-1$

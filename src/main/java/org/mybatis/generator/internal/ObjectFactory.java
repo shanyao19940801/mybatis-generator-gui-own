@@ -33,8 +33,6 @@ import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.api.XmlFormatter;
 import org.mybatis.generator.api.dom.DefaultJavaFormatter;
 import org.mybatis.generator.api.dom.DefaultXmlFormatter;
-import org.mybatis.generator.codegen.ibatis2.IntrospectedTableIbatis2Java2Impl;
-import org.mybatis.generator.codegen.ibatis2.IntrospectedTableIbatis2Java5Impl;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3SimpleImpl;
 import org.mybatis.generator.config.CommentGeneratorConfiguration;
@@ -317,10 +315,6 @@ public class ObjectFactory {
         String type = context.getTargetRuntime();
         if (!stringHasValue(type)) {
             type = IntrospectedTableMyBatis3Impl.class.getName();
-        } else if ("Ibatis2Java2".equalsIgnoreCase(type)) { //$NON-NLS-1$
-            type = IntrospectedTableIbatis2Java2Impl.class.getName();
-        } else if ("Ibatis2Java5".equalsIgnoreCase(type)) { //$NON-NLS-1$
-            type = IntrospectedTableIbatis2Java5Impl.class.getName();
         } else if ("Ibatis3".equalsIgnoreCase(type)) { //$NON-NLS-1$
             type = IntrospectedTableMyBatis3Impl.class.getName();
         } else if ("MyBatis3".equalsIgnoreCase(type)) { //$NON-NLS-1$
