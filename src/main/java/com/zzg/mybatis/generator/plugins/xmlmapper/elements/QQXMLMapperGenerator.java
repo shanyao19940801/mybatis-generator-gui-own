@@ -59,6 +59,32 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
         return answer;
     }
 
+    protected void addSelectByPrimaryKeyElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
+            AbstractXmlElementGenerator elementGenerator = new SelectByPrimaryKeyElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+
+    protected void addResultMapAllElement(XmlElement parentElement) {
+        AbstractXmlElementGenerator elementGenerator = new QQResultMapAllElementGenerator(false);
+        initializeAndExecuteGenerator(elementGenerator, parentElement);
+    }
+
+    protected void addAllColumnListElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateBaseColumnList()) {
+            AbstractXmlElementGenerator elementGenerator = new QQColumnListElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+
+    protected void addInsertElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateInsert()) {
+            AbstractXmlElementGenerator elementGenerator = new InsertElementGenerator(false);
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+
     protected void addResultMapWithoutBLOBsElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateBaseResultMap()) {
             AbstractXmlElementGenerator elementGenerator = new ResultMapWithoutBLOBsElementGenerator(false);
@@ -69,12 +95,6 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
     protected void addResultMapWithBLOBsElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
             AbstractXmlElementGenerator elementGenerator = new ResultMapWithBLOBsElementGenerator();
-            initializeAndExecuteGenerator(elementGenerator, parentElement);
-        }
-    }
-    protected void addResultMapAllElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
-            AbstractXmlElementGenerator elementGenerator = new QQResultMapAllElementGenerator(false);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
@@ -103,12 +123,6 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
-    protected void addAllColumnListElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateBaseColumnList()) {
-            AbstractXmlElementGenerator elementGenerator = new QQColumnListElementGenerator();
-            initializeAndExecuteGenerator(elementGenerator, parentElement);
-        }
-    }
 
     protected void addBlobColumnListElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateBlobColumnList()) {
@@ -132,12 +146,6 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
         }
     }
 
-    protected void addSelectByPrimaryKeyElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
-            AbstractXmlElementGenerator elementGenerator = new SelectByPrimaryKeyElementGenerator();
-            initializeAndExecuteGenerator(elementGenerator, parentElement);
-        }
-    }
 
     protected void addDeleteByExampleElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateDeleteByExample()) {
@@ -149,13 +157,6 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
     protected void addDeleteByPrimaryKeyElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateDeleteByPrimaryKey()) {
             AbstractXmlElementGenerator elementGenerator = new DeleteByPrimaryKeyElementGenerator(false);
-            initializeAndExecuteGenerator(elementGenerator, parentElement);
-        }
-    }
-
-    protected void addInsertElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateInsert()) {
-            AbstractXmlElementGenerator elementGenerator = new InsertElementGenerator(false);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
