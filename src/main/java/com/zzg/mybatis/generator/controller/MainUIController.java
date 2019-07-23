@@ -279,7 +279,8 @@ public class MainUIController extends BaseFXController {
         //8.自动配置mybatis-config
         //9. xml枚举生成使用单选框  done
         //10. 删除不用包  done
-        //11. Java实体不生成不用的方法
+        //11. 默认生成目录
+        //12. 读取jar包中lib
         if (tableName == null) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
             return;
@@ -386,6 +387,7 @@ public class MainUIController extends BaseFXController {
     //从UI读取参数
     public GeneratorConfig getGeneratorConfigFromUI() {
         GeneratorConfig generatorConfig = new GeneratorConfig();
+
         generatorConfig.setProjectFolder(projectFolderField.getText());
         generatorConfig.setModelPackage(modelTargetPackage.getText());
         generatorConfig.setGenerateKeys(generateKeysField.getText());
