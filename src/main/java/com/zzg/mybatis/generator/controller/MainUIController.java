@@ -274,12 +274,12 @@ public class MainUIController extends BaseFXController {
         //3.自动生成方法，只保留select和insert  DONE
         //6.mapper.xml 删除sql选项  DONE
         //7.实体注释可选择  DONE
-        //4.insert中 is_deleted, create_time 使用写死的值
+        //4.insert中 is_deleted, create_time 使用写死的值 没必要
         //5.insertzi东生成主键id
         //8.自动配置mybatis-config
-        //9. xml枚举生成使用单选框
-        //10. 删除不用包
-        //1. Java实体不生成不用的方法
+        //9. xml枚举生成使用单选框  done
+        //10. 删除不用包  done
+        //11. Java实体不生成不用的方法
         if (tableName == null) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
             return;
