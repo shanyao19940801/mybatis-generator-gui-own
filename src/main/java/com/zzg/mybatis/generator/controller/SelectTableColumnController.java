@@ -1,6 +1,7 @@
 package com.zzg.mybatis.generator.controller;
 
 import com.zzg.mybatis.generator.model.UITableColumnVO;
+import com.zzg.mybatis.generator.view.AlertUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -37,7 +38,7 @@ public class SelectTableColumnController extends BaseFXController {
     @FXML
     private TableColumn<UITableColumnVO, String> typeHandlerColumn;
     @FXML
-    private TableColumn<UITableColumnVO, String> javaTypePackageColumn;
+    private TableColumn<UITableColumnVO, Boolean> javaTypePackageColumn;
 
     private MainUIController mainUIController;
 
@@ -68,17 +69,27 @@ public class SelectTableColumnController extends BaseFXController {
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setTypeHandle(event.getNewValue());
         });
 
-        javaTypePackageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        javaTypePackageColumn.setOnEditCommit(event -> {
+        javaTypePackageColumn.setCellFactory(CheckBoxTableCell.forTableColumn(javaTypePackageColumn));
+        /*javaTypePackageColumn.setOnEditCommit(event -> {
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setJavaTypePackage(event.getNewValue());
-        });
+        });*/
 
     }
 
     @FXML
     public void ok() {
         ObservableList<UITableColumnVO> items = columnListView.getItems();
+
         if (items != null && items.size() > 0) {
+            for (UITableColumnVO item : items) {
+                if (item.isJavaTypePackage()) {
+                    if (item.getJavaType() == null || "".equals(item.getJavaType())) {
+                        AlertUtil.showErrorAlert("自定义枚举必须填写 JavaType");
+                        return;
+                    }
+                }
+            }
+
             List<IgnoredColumn> ignoredColumns = new ArrayList<>();
             List<ColumnOverride> columnOverrides = new ArrayList<>();
             items.stream().forEach(item -> {
@@ -91,8 +102,8 @@ public class SelectTableColumnController extends BaseFXController {
                     columnOverride.setTypeHandler(item.getTypeHandle());
                     columnOverride.setJavaProperty(item.getPropertyName());
                     columnOverride.setJavaType(item.getJavaType());
-                    if (item.getJavaTypePackage() != null) {
-                        columnOverride.setFullyQualifiedJavaType(new FullyQualifiedJavaType(item.getJavaTypePackage()));
+                    if (item.isJavaTypePackage()) {
+                        columnOverride.setFullyQualifiedJavaType(new FullyQualifiedJavaType(item.getJavaType()));
                     }
                     columnOverrides.add(columnOverride);
                 }

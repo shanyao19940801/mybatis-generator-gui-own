@@ -279,6 +279,7 @@ public class MainUIController extends BaseFXController {
         //8.自动配置mybatis-config
         //9. xml枚举生成使用单选框
         //10. 删除不用包
+        //1. Java实体不生成不用的方法
         if (tableName == null) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
             return;

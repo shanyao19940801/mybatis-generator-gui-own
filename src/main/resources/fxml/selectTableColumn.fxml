@@ -12,9 +12,9 @@
           <TableColumn fx:id="columnNameColumn" prefWidth="152.0" text="Column Name" />
             <TableColumn fx:id="jdbcTypeColumn" prefWidth="122.0" text="JDBC Type" />
             <TableColumn fx:id="javaTypeColumn" prefWidth="121.0" text="Java Type" />
+            <TableColumn fx:id="javaTypePackageColumn" prefWidth="156.0" text="是否自定义枚举" />
             <TableColumn fx:id="propertyNameColumn" prefWidth="104.0" text="Property Name" />
             <TableColumn fx:id="typeHandlerColumn" prefWidth="136.0" text="Type Handler" />
-            <TableColumn fx:id="javaTypePackageColumn" prefWidth="156.0" text="javaTypePackage" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

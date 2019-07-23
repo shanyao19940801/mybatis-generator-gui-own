@@ -22,7 +22,7 @@ public class UITableColumnVO {
 
     private StringProperty typeHandle = new SimpleStringProperty();
 
-    private StringProperty javaTypePackage = new SimpleStringProperty();
+    private BooleanProperty javaTypePackage = new SimpleBooleanProperty();
 
     public String getColumnName() {
         return columnName.get();
@@ -96,15 +96,15 @@ public class UITableColumnVO {
         this.javaType.set(javaType);
     }
 
-    public String getJavaTypePackage() {
+    public boolean isJavaTypePackage() {
         return javaTypePackage.get();
     }
 
-    public StringProperty javaTypePackageProperty() {
+    public BooleanProperty javaTypePackageProperty() {
         return javaTypePackage;
     }
 
-    public void setJavaTypePackage(String javaTypePackage) {
+    public void setJavaTypePackage(boolean javaTypePackage) {
         this.javaTypePackage.set(javaTypePackage);
     }
 }
