@@ -8,6 +8,7 @@ import com.zzg.mybatis.generator.model.UITableColumnVO;
 import com.zzg.mybatis.generator.util.ConfigHelper;
 import com.zzg.mybatis.generator.util.DbUtil;
 import com.zzg.mybatis.generator.util.MyStringUtils;
+import com.zzg.mybatis.generator.util.PathUtil;
 import com.zzg.mybatis.generator.view.AlertUtil;
 import com.zzg.mybatis.generator.view.UIProgressCallback;
 import javafx.collections.FXCollections;
@@ -222,6 +223,11 @@ public class MainUIController extends BaseFXController {
 		setTooltip();
 		//默认选中第一个，否则如果忘记选择，没有对应错误提示
         encodingChoice.getSelectionModel().selectFirst();
+        String path = PathUtil.initProjectPathAndDebug();
+        projectFolderField.setText(path);
+        daoTargetPackage.setText("src.main.java.com.qingqing");
+        mapperTargetPackage.setText("src.main.java.com.qingqing");
+        modelTargetPackage.setText("src.main.java.com.qingqing");
 	}
 
 	private void setTooltip() {
