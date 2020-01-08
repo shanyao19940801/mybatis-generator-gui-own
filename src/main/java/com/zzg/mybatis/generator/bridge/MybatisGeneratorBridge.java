@@ -63,9 +63,9 @@ public class MybatisGeneratorBridge {
         context.addProperty("javaFileEncoding", "UTF-8");
         
 		String dbType = selectedDatabaseConfig.getDbType();
-		String connectorLibPath = ConfigHelper.findConnectorLibPath(dbType);
-	    _LOG.info("connectorLibPath: {}", connectorLibPath);
-	    configuration.addClasspathEntry(connectorLibPath);
+//		String connectorLibPath = ConfigHelper.findConnectorLibPath(dbType);
+//	    _LOG.info("connectorLibPath: {}", connectorLibPath);
+//	    configuration.addClasspathEntry(connectorLibPath);
         // Table configuration
         TableConfiguration tableConfig = new TableConfiguration(context);
         tableConfig.setTableName(generatorConfig.getTableName());
