@@ -14,6 +14,7 @@ import com.zzg.mybatis.generator.view.UIProgressCallback;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -21,6 +22,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Callback;
@@ -104,6 +107,9 @@ public class MainUIController extends BaseFXController {
     private CheckBox jsr310Support;
     @FXML
     private TreeView<String> leftDBTree;
+    @FXML
+    private TextField filterTableName;
+
     // Current selected databaseConfig
     private DatabaseConfig selectedDatabaseConfig;
     // Current selected tableName
@@ -184,29 +190,7 @@ public class MainUIController extends BaseFXController {
                     }
                     treeItem.setExpanded(true);
                     if (level == 1) {
-                        DatabaseConfig selectedConfig = (DatabaseConfig) treeItem.getGraphic().getUserData();
-                        try {
-                            List<String> tables = DbUtil.getTableNames(selectedConfig);
-                            if (tables != null && tables.size() > 0) {
-                                ObservableList<TreeItem<String>> children = cell.getTreeItem().getChildren();
-                                children.clear();
-                                for (String tableName : tables) {
-                                    TreeItem<String> newTreeItem = new TreeItem<>();
-                                    ImageView imageView = new ImageView("icons/table.png");
-                                    imageView.setFitHeight(16);
-                                    imageView.setFitWidth(16);
-                                    newTreeItem.setGraphic(imageView);
-                                    newTreeItem.setValue(tableName);
-                                    children.add(newTreeItem);
-                                }
-                            }
-                        } catch (SQLRecoverableException e) {
-                            _LOG.error(e.getMessage(), e);
-                            AlertUtil.showErrorAlert("连接超时");
-                        } catch (Exception e) {
-                            _LOG.error(e.getMessage(), e);
-                            AlertUtil.showErrorAlert(e.getMessage());
-                        }
+                        gennerater(cell, treeItem);
                     } else if (level == 2) { // left DB tree level3
                         String tableName = treeCell.getTreeItem().getValue();
                         selectedDatabaseConfig = (DatabaseConfig) treeItem.getParent().getGraphic().getUserData();
@@ -228,9 +212,66 @@ public class MainUIController extends BaseFXController {
         daoTargetPackage.setText("src.main.java.com.qingqing");
         mapperTargetPackage.setText("src.main.java.com.qingqing");
         modelTargetPackage.setText("src.main.java.com.qingqing");
+        filterTableName.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    System.out.println(filterTableName.getText());
+                    try {
+                        ObservableList<TreeItem<String>> children = leftDBTree.getRoot().getChildren();
+                        for (TreeItem<String> item : children) {
+                            DatabaseConfig selectedConfig = (DatabaseConfig) item.getGraphic().getUserData();
+                            ObservableList<TreeItem<String>> allTableChild = item.getChildren();
+                            if (allTableChild != null && allTableChild.size() > 0) {
+                                List<String> tables = DbUtil.getTableNames(selectedConfig, filterTableName.getText());
+                                allTableChild.clear();
+                                for (String tableName : tables) {
+                                    TreeItem<String> newTreeItem = new TreeItem<>();
+                                    ImageView imageView = new ImageView("icons/table.png");
+                                    imageView.setFitHeight(16);
+                                    imageView.setFitWidth(16);
+                                    newTreeItem.setGraphic(imageView);
+                                    newTreeItem.setValue(tableName);
+                                    allTableChild.add(newTreeItem);
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        _LOG.error(e.getMessage(), e);
+                    }
+                }
+            }
+        });
+
 	}
 
-	private void setTooltip() {
+    private void gennerater(TreeCell<String> cell, TreeItem<String> treeItem) {
+        DatabaseConfig selectedConfig = (DatabaseConfig) treeItem.getGraphic().getUserData();
+        try {
+            List<String> tables = DbUtil.getTableNames(selectedConfig);
+            if (tables != null && tables.size() > 0) {
+                ObservableList<TreeItem<String>> children = cell.getTreeItem().getChildren();
+                children.clear();
+                for (String tableName : tables) {
+                    TreeItem<String> newTreeItem = new TreeItem<>();
+                    ImageView imageView = new ImageView("icons/table.png");
+                    imageView.setFitHeight(16);
+                    imageView.setFitWidth(16);
+                    newTreeItem.setGraphic(imageView);
+                    newTreeItem.setValue(tableName);
+                    children.add(newTreeItem);
+                }
+            }
+        } catch (SQLRecoverableException e) {
+            _LOG.error(e.getMessage(), e);
+            AlertUtil.showErrorAlert("连接超时");
+        } catch (Exception e) {
+            _LOG.error(e.getMessage(), e);
+            AlertUtil.showErrorAlert(e.getMessage());
+        }
+    }
+
+    private void setTooltip() {
 		encodingChoice.setTooltip(new Tooltip("生成文件的编码，必选"));
 		generateKeysField.setTooltip(new Tooltip("insert时可以返回主键ID"));
 //		offsetLimitCheckBox.setTooltip(new Tooltip("是否要生成分页查询代码"));

@@ -135,9 +135,13 @@ public class DbUtil {
     }
 
     public static List<String> getTableNames(DatabaseConfig config) throws Exception {
+		return getTableNames(config, null);
+	}
+    public static List<String> getTableNames(DatabaseConfig config, String likeString) throws Exception {
 		Session sshSession = getSSHSession(config);
 		engagePortForwarding(sshSession, config);
 		Connection connection = getConnection(config);
+		likeString = likeString == null ? "" : likeString;
 	    try {
 		    List<String> tables = new ArrayList<>();
 		    DatabaseMetaData md = connection.getMetaData();
@@ -161,7 +165,7 @@ public class DbUtil {
 			    // rs = md.getTables(null, config.getUsername().toUpperCase(), null, null);
 
 
-				rs = md.getTables(config.getSchema(), null, "%", new String[] {"TABLE", "VIEW"});			//针对 postgresql 的左侧数据表显示
+				rs = md.getTables(config.getSchema(), null, likeString + "%", new String[] {"TABLE", "VIEW"});			//针对 postgresql 的左侧数据表显示
 		    }
 		    while (rs.next()) {
 			    tables.add(rs.getString(3));
