@@ -220,7 +220,8 @@ public class MainUIController extends BaseFXController {
         filterTableName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ENTER)) {
+
+//                if (event.getCode().equals(KeyCode.ENTER)) {
                     System.out.println(filterTableName.getText());
                     try {
                         ObservableList<TreeItem<String>> children = leftDBTree.getRoot().getChildren();
@@ -245,7 +246,7 @@ public class MainUIController extends BaseFXController {
                         _LOG.error(e.getMessage(), e);
                     }
                 }
-            }
+//            }
         });
     }
 
