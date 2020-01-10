@@ -190,7 +190,7 @@ public class MainUIController extends BaseFXController {
                     }
                     treeItem.setExpanded(true);
                     if (level == 1) {
-                        gennerater(cell, treeItem);
+                        generateTree(cell, treeItem);
                     } else if (level == 2) { // left DB tree level3
                         String tableName = treeCell.getTreeItem().getValue();
                         selectedDatabaseConfig = (DatabaseConfig) treeItem.getParent().getGraphic().getUserData();
@@ -212,6 +212,11 @@ public class MainUIController extends BaseFXController {
         daoTargetPackage.setText("src.main.java.com.qingqing");
         mapperTargetPackage.setText("src.main.java.com.qingqing");
         modelTargetPackage.setText("src.main.java.com.qingqing");
+        tableNameSearch();
+
+    }
+
+    private void tableNameSearch() {
         filterTableName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -222,7 +227,7 @@ public class MainUIController extends BaseFXController {
                         for (TreeItem<String> item : children) {
                             DatabaseConfig selectedConfig = (DatabaseConfig) item.getGraphic().getUserData();
                             ObservableList<TreeItem<String>> allTableChild = item.getChildren();
-                            if (allTableChild != null && allTableChild.size() > 0) {
+                            if (item.isExpanded()) {
                                 List<String> tables = DbUtil.getTableNames(selectedConfig, filterTableName.getText());
                                 allTableChild.clear();
                                 for (String tableName : tables) {
@@ -242,13 +247,12 @@ public class MainUIController extends BaseFXController {
                 }
             }
         });
+    }
 
-	}
-
-    private void gennerater(TreeCell<String> cell, TreeItem<String> treeItem) {
+    private void generateTree(TreeCell<String> cell, TreeItem<String> treeItem) {
         DatabaseConfig selectedConfig = (DatabaseConfig) treeItem.getGraphic().getUserData();
         try {
-            List<String> tables = DbUtil.getTableNames(selectedConfig);
+            List<String> tables = DbUtil.getTableNames(selectedConfig, filterTableName.getText());
             if (tables != null && tables.size() > 0) {
                 ObservableList<TreeItem<String>> children = cell.getTreeItem().getChildren();
                 children.clear();
