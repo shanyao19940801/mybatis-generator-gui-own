@@ -88,19 +88,19 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         }
 
         addCountByExampleMethod(interfaze);
-        addDeleteByExampleMethod(interfaze);
-        addDeleteByPrimaryKeyMethod(interfaze);
+//        addDeleteByExampleMethod(interfaze);
+//        addDeleteByPrimaryKeyMethod(interfaze);
         addInsertMethod(interfaze);
-        addInsertSelectiveMethod(interfaze);
+//        addInsertSelectiveMethod(interfaze);
         addSelectByExampleWithBLOBsMethod(interfaze);
         addSelectByExampleWithoutBLOBsMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
-        addUpdateByExampleSelectiveMethod(interfaze);
+//        addUpdateByExampleSelectiveMethod(interfaze);
         addUpdateByExampleWithBLOBsMethod(interfaze);
         addUpdateByExampleWithoutBLOBsMethod(interfaze);
-        addUpdateByPrimaryKeySelectiveMethod(interfaze);
-        addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
-        addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
+//        addUpdateByPrimaryKeySelectiveMethod(interfaze);
+//        addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
+//        addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
 
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         if (context.getPlugins().clientGenerated(interfaze, null,
@@ -231,8 +231,8 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
 
     @Override
     public AbstractXmlGenerator getMatchedXMLGenerator() {
-        return new XMLMapperGenerator();
+//        return new XMLMapperGenerator();
 //        qingqing 使用自定义的XMLMApper Generator
-//        return new QQXMLMapperGenerator();
+        return new QQXMLMapperGenerator();
     }
 }

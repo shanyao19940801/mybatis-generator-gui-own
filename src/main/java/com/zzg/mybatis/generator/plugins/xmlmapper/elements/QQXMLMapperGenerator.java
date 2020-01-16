@@ -34,27 +34,26 @@ public class QQXMLMapperGenerator extends AbstractXmlGenerator {
 
         context.getCommentGenerator().addRootComment(answer);
 
-        addResultMapAllElement(answer);
-        addInsertElement(answer);
-        addAllColumnListElement(answer);
-        addSelectByPrimaryKeyElement(answer);
-
-        /*addBaseColumnListElement(answer);
-        addBlobColumnListElement(answer);
+        addResultMapWithoutBLOBsElement(answer);
+        addResultMapWithBLOBsElement(answer);
         addExampleWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
+        addBaseColumnListElement(answer);
+        addBlobColumnListElement(answer);
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
-        addDeleteByPrimaryKeyElement(answer);
-        addDeleteByExampleElement(answer);
-        addInsertSelectiveElement(answer);
+        addSelectByPrimaryKeyElement(answer);
+//        addDeleteByPrimaryKeyElement(answer);
+//        addDeleteByExampleElement(answer);
+        addInsertElement(answer);
+//        addInsertSelectiveElement(answer);
         addCountByExampleElement(answer);
-        addUpdateByExampleSelectiveElement(answer);
+//        addUpdateByExampleSelectiveElement(answer);
         addUpdateByExampleWithBLOBsElement(answer);
         addUpdateByExampleWithoutBLOBsElement(answer);
-        addUpdateByPrimaryKeySelectiveElement(answer);
-        addUpdateByPrimaryKeyWithBLOBsElement(answer);
-        addUpdateByPrimaryKeyWithoutBLOBsElement(answer);*/
+//        addUpdateByPrimaryKeySelectiveElement(answer);
+//        addUpdateByPrimaryKeyWithBLOBsElement(answer);
+//        addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
 
         return answer;
     }
