@@ -15,8 +15,7 @@
  */
 package org.mybatis.generator.internal.db;
 
-import static org.mybatis.generator.internal.util.JavaBeansUtil.getCamelCaseString;
-import static org.mybatis.generator.internal.util.JavaBeansUtil.getValidPropertyName;
+import static org.mybatis.generator.internal.util.JavaBeansUtil.*;
 import static org.mybatis.generator.internal.util.StringUtility.composeFullyQualifiedTableName;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 import static org.mybatis.generator.internal.util.StringUtility.stringContainsSQLWildcard;
@@ -287,8 +286,8 @@ public class DatabaseIntrospector {
                     introspectedColumn.setJavaProperty(
                             getValidPropertyName(sb.toString()));
                 } else {
-                    introspectedColumn.setJavaProperty(
-                            getCamelCaseString(calculatedColumnName, false));
+//                    introspectedColumn.setJavaProperty(getCamelCaseString(calculatedColumnName, false));
+                    introspectedColumn.setJavaProperty(getCamelCaseStringQingQing(calculatedColumnName, false));
                 }
 
                 FullyQualifiedJavaType fullyQualifiedJavaType = javaTypeResolver

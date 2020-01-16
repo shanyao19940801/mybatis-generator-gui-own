@@ -134,6 +134,58 @@ public class JavaBeansUtil {
         return sb.toString();
     }
 
+    public static String getCamelCaseStringQingQing(String inputString,
+            boolean firstCharacterUppercase) {
+        StringBuilder sb = new StringBuilder();
+        char[] chars = inputString.toCharArray();
+        boolean isAllLetter = true;
+        for (char c : chars) {
+            if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+                continue;
+            }
+            isAllLetter = false;
+            break;
+        }
+        if (!isAllLetter) {
+            boolean nextUpperCase = false;
+            for (int i = 0; i < inputString.length(); i++) {
+                char c = inputString.charAt(i);
+
+                switch (c) {
+                    case '_':
+                    case '-':
+                    case '@':
+                    case '$':
+                    case '#':
+                    case ' ':
+                    case '/':
+                    case '&':
+                        if (sb.length() > 0) {
+                            nextUpperCase = true;
+                        }
+                        break;
+
+                    default:
+                        if (nextUpperCase) {
+                            sb.append(Character.toUpperCase(c));
+                            nextUpperCase = false;
+                        } else {
+                            sb.append(Character.toLowerCase(c));
+                        }
+                        break;
+                }
+            }
+        } else {
+            sb.append(chars);
+        }
+
+        if (firstCharacterUppercase) {
+            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+        }
+
+        return sb.toString();
+    }
+
     /**
      * This method ensures that the specified input string is a valid Java property name.
      * 
