@@ -40,7 +40,7 @@ public class MyJavaTypeResolverImpl implements JavaTypeResolver {
         typeMap.put(Types.BINARY, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("BINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
         typeMap.put(Types.BIT, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("BIT", //$NON-NLS-1$
-                new FullyQualifiedJavaType(Boolean.class.getName())));
+                new FullyQualifiedJavaType(Integer.class.getName())));
         typeMap.put(Types.BLOB, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("BLOB", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
         typeMap.put(Types.BOOLEAN, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("BOOLEAN", //$NON-NLS-1$
@@ -93,7 +93,7 @@ public class MyJavaTypeResolverImpl implements JavaTypeResolver {
         typeMap.put(Types.TIMESTAMP, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("TIMESTAMP", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Date.class.getName())));
         typeMap.put(Types.TINYINT, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("TINYINT", //$NON-NLS-1$
-                new FullyQualifiedJavaType(Byte.class.getName())));
+                new FullyQualifiedJavaType(Integer.class.getName())));
         typeMap.put(Types.VARBINARY, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("VARBINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
         typeMap.put(Types.VARCHAR, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("VARCHAR", //$NON-NLS-1$
